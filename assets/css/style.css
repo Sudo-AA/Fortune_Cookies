@@ -63,8 +63,6 @@
   transform: translateY(100%);
   transition: transform 0.8s ease;
 }
-
-/* OPEN STATE */
 .cookie-container.open .top {
   transform: translateY(-40px) rotate(-8deg);
 }
