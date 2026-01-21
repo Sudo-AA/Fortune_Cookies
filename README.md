@@ -1,6 +1,4 @@
 
-- Make sure the JSON file is located exactly at `./assets/jsondata/fortune_cookies_100000.json` so the app can load it correctly.
-
 ---
 
 ## **How to Use**
@@ -19,7 +17,6 @@
 ## **Development**
 
 - Built with **HTML5, CSS3, JavaScript, and Bootstrap 5**.  
-- JSON is loaded dynamically via **AJAX/fetch**.  
 - Fully responsive for mobile and desktop devices.  
 
 ---
