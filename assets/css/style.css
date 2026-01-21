@@ -15,10 +15,10 @@
     text-shadow: 1px 1px 2px #fff3e0;
   }
 
-  
+
 #cookie-container {
   position: relative;
-  width: 220px;
+  width: auto;
   height: 180px;
   margin: 30px auto;
   cursor: pointer;
@@ -70,15 +70,15 @@
 
 /* OPEN STATE */
 .cookie-container.open .top {
-  transform: translateY(-50px) rotate(-8deg);
+  transform: translateY(-400px) rotate(-8deg);
 }
 
 .cookie-container.open .bottom {
-  transform: translateY(50px) rotate(8deg);
+  transform: translateY(400px) rotate(8deg);
 }
 
 .cookie-container.open #fortune-wrapper {
-  height: 80px;
+  height: 120px;
 }
 
 .cookie-container.open #fortune {
