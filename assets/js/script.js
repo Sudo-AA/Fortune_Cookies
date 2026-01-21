@@ -35,19 +35,6 @@ function reset_fortune(){
   });
 }
 
-const actions = [
-  "reading", "coding", "studying", "deciding", "learning", "writing", "planning",
-  "meditating", "exploring", "negotiating", "reflecting", "experimenting",
-  "analyzing", "painting", "designing", "practicing", "questioning", "observing",
-  "dreaming", "calculating"
-];
-
-const objects = [
-  "the mirror", "a message", "your screen", "the past", "a notebook", 
-  "the letter", "a shadow", "the window", "the stars", "an ancient scroll", 
-  "the candle", "the key", "the path", "a secret document", "the hidden door",
-  "a coin", "the garden", "the old book", "the forgotten diary", "the envelope"
-];
 
 function generate_fortunes() {
   const COUNT = 10000;
@@ -91,6 +78,19 @@ function generate_fortunes() {
   const adverbs = ["carefully", "quickly", "secretly", "boldly", "silently"];
   const adjectives = ["ancient", "mysterious", "shiny", "forgotten", "hidden"];
   const times = ["before dawn", "by nightfall", "this week", "soon", "unexpectedly"];
+  const actions = [
+    "reading", "coding", "studying", "deciding", "learning", "writing", "planning",
+    "meditating", "exploring", "negotiating", "reflecting", "experimenting",
+    "analyzing", "painting", "designing", "practicing", "questioning", "observing",
+    "dreaming", "calculating"
+  ];
+
+  const objects = [
+    "the mirror", "a message", "your screen", "the past", "a notebook", 
+    "the letter", "a shadow", "the window", "the stars", "an ancient scroll", 
+    "the candle", "the key", "the path", "a secret document", "the hidden door",
+    "a coin", "the garden", "the old book", "the forgotten diary", "the envelope"
+  ];
 
   const groups = [good, bad, karma, threat, edu];
 
