@@ -27,6 +27,17 @@ xhr.send();
 
 // reveal fortune
 container.addEventListener("click", () => {
+      show_fortune()
+      container.addEventListener("click", () => {
+      container.classList.remove("open");
+      fortuneDiv.textContent = "";
+      fortuneDiv.classList.remove("bad");
+      container.addEventListener("click", () => {show_fortune()});
+    });
+});
+
+function show_fortune(){
+
   if (!loaded || fortunes.length === 0) return;
   if (container.classList.contains('open')) return; // prevent double click
 
@@ -36,11 +47,5 @@ container.addEventListener("click", () => {
   fortuneDiv.classList.toggle("bad", /know what you did|karma|careless|mistake/i.test(pick.fortune));
 
   container.classList.add("open");
-});
 
-// reset
-resetBtn.addEventListener("click", () => {
-  container.classList.remove("open");
-  fortuneDiv.textContent = "";
-  fortuneDiv.classList.remove("bad");
-});
+}
