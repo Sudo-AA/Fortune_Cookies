@@ -1,20 +1,33 @@
-# Fortune Cookie App 🥠
 
-Welcome to the **Fortune Cookie App**, a fun web app that randomly reveals fortunes, including good luck and bad luck messages! The app features:
-
-- Interactive cookie animation 🎯  
-- Responsive design using **Bootstrap 5**  
-- Supports large JSON data with 100,000+ fortune entries  
-- Highlights “bad luck” fortunes in red automatically  
+- Make sure the JSON file is located exactly at `./assets/jsondata/fortune_cookies_100000.json` so the app can load it correctly.
 
 ---
 
-## **Live Demo**
+## **How to Use**
 
-You can try it online here:  
-[https://sudo-aa.github.io/Fortune_Cookies/](https://sudo-aa.github.io/Fortune_Cookies/)
+1. Open the [Live Demo](https://sudo-aa.github.io/Fortune_Cookies/) or `index.html` locally via a server.  
+   - **Note:** AJAX requests require serving over HTTP. You can use:
+     - VS Code Live Server extension  
+     - Python HTTP server: `python -m http.server 8000`  
+     - Node.js http-server: `http-server`  
+2. Click the fortune cookie to reveal a random fortune.  
+3. “Bad luck” messages will appear in red.  
+4. Click the **Reset** button to close the cookie and try again.  
 
 ---
 
-## **Folder Structure**
+## **Development**
 
+- Built with **HTML5, CSS3, JavaScript, and Bootstrap 5**.  
+- JSON is loaded dynamically via **AJAX/fetch**.  
+- Fully responsive for mobile and desktop devices.  
+
+---
+
+## **License**
+
+This project is open source and free to use. Feel free to fork or customize it!  
+
+---
+
+Enjoy your fortunes! 🥠✨
