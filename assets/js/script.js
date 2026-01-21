@@ -12,13 +12,10 @@ container.addEventListener("click", () => {
 
 function show_fortune(){
 
-  if (!loaded || fortunes.length === 0) return;
-  if (container.classList.contains('open')) return; // prevent double click
+  
+  fortuneDiv.textContent = generate_fortunes();
 
-  const pick = fortunes[Math.floor(Math.random() * fortunes.length)];
-  fortuneDiv.textContent = pick.fortune;
-
-  fortuneDiv.classList.toggle("bad", /know what you did|karma|careless|mistake/i.test(pick.fortune));
+  fortuneDiv.classList.toggle("bad", /know what you did|karma|careless|mistake/i.test(generate_fortunes()));
 
   container.classList.add("open");
   container.addEventListener("click", () => {
@@ -37,7 +34,7 @@ function reset_fortune(){
 
 
 function generate_fortunes() {
-  const COUNT = 10000;
+  let fortune_raw
 
   const good = [
     "Luck tilts your way after you commit to {action}.",
@@ -98,7 +95,7 @@ function generate_fortunes() {
     return arr[Math.floor(Math.random() * arr.length)];
   }
 
-  for (let i = 1; i <= COUNT; i++) {
+
     let template = pick(pick(groups));
 
     let fortune = template
@@ -110,7 +107,6 @@ function generate_fortunes() {
 
     fortune += ` [${i}]`;
 
-    fortunes.push({ id: i, fortune });
-  }
+    return fortune
 
 }
