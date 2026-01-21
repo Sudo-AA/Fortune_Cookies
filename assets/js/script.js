@@ -1,4 +1,4 @@
-
+const container = document.getElementById("cookie-container");
 const cookieTop = document.getElementById('cookie-top');
 const cookieBottom = document.getElementById('cookie-bottom');
 const resetBtn = document.getElementById('reset');
@@ -63,6 +63,26 @@ function resetCookie() {
   fortuneDiv.classList.remove('bad-luck');
   setTimeout(() => { fortuneDiv.textContent = ''; }, 300);
 }
+
+
+// when cookie is clicked
+container.addEventListener("click", () => {
+  if (!fortunes.length) return;
+
+  const pick = fortunes[Math.floor(Math.random() * fortunes.length)];
+  fortuneDiv.textContent = pick.fortune;
+
+  fortuneDiv.classList.toggle("bad", /know what you did|karma|careless|mistake/i.test(pick.fortune));
+
+  container.classList.add("open");
+});
+
+// reset
+resetBtn.addEventListener("click", () => {
+  container.classList.remove("open");
+  fortuneDiv.textContent = "";
+  fortuneDiv.classList.remove("bad");
+});
 
 cookieTop.addEventListener('click', crackCookie);
 cookieBottom.addEventListener('click', crackCookie);
