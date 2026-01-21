@@ -1,12 +1,14 @@
 const container = document.getElementById("cookie-container");
 const resetBtn = document.getElementById('reset');
 const fortuneDiv = document.getElementById('fortune');
-let fortunes = generate_fortunes();
+let fortunes = [];
 let loaded = false;
 // reveal fortune
+generate_fortunes();
 container.addEventListener("click", () => {
       show_fortune()
 });
+
 
 function show_fortune(){
 
@@ -33,58 +35,82 @@ function reset_fortune(){
   });
 }
 
-
-function generate_fortunes(){
-
-const COUNT = 100000;
-
-const good = [
-  "Luck tilts your way after you commit to {action}.",
-  "A quiet victory forms near {object}.",
-  "Opportunity circles back in {number} days."
+const actions = [
+  "reading", "coding", "studying", "deciding", "learning", "writing", "planning",
+  "meditating", "exploring", "negotiating", "reflecting", "experimenting",
+  "analyzing", "painting", "designing", "practicing", "questioning", "observing",
+  "dreaming", "calculating"
 ];
 
-const bad = [
-  "Carelessness around {object} brings delay.",
-  "A small mistake echoes for {number} days."
+const objects = [
+  "the mirror", "a message", "your screen", "the past", "a notebook", 
+  "the letter", "a shadow", "the window", "the stars", "an ancient scroll", 
+  "the candle", "the key", "the path", "a secret document", "the hidden door",
+  "a coin", "the garden", "the old book", "the forgotten diary", "the envelope"
 ];
 
-const karma = [
-  "Karma remembers how you treated {object}.",
-  "The universe keeps receipts from {number} nights ago."
-];
+function generate_fortunes() {
+  const COUNT = 10000;
 
-const threat = [
-  "I know what you did near {object}. Choose wisely.",
-  "Someone is watching how you handle {action}."
-];
+  const good = [
+    "Luck tilts your way after you commit to {action}.",
+    "A quiet victory forms near {object}.",
+    "Opportunity circles back in {number} days.",
+    "Unexpected luck finds you while {action}. 🌟",
+    "Fortune smiles during {action} at {object}."
+  ];
 
-const edu = [
-  "Spend 15 minutes learning {action}; compound gains follow.",
-  "Consistency over {number} days beats talent."
-];
+  const bad = [
+    "Carelessness around {object} brings delay.",
+    "A small mistake echoes for {number} days.",
+    "Beware of rushing {action}; chaos follows. ⚡",
+    "An unseen error will arise near {object}."
+  ];
 
-const actions = ["reading", "coding", "studying", "deciding", "learning"];
-const objects = ["the mirror", "a message", "your screen", "the past", "a notebook"];
+  const karma = [
+    "Karma remembers how you treated {object}.",
+    "The universe keeps receipts from {number} nights ago.",
+    "What goes around comes around during {action}.",
+    "Your past deeds near {object} will return unexpectedly."
+  ];
 
-const groups = [good, bad, karma, threat, edu];
+  const threat = [
+    "I know what you did near {object}. Choose wisely. 😈",
+    "Someone is watching how you handle {action}.",
+    "Your secret about {object} won't stay hidden.",
+    "Mistakes in {action} will be noticed by someone."
+  ];
 
-function pick(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
+  const edu = [
+    "Spend 15 minutes learning {action}; compound gains follow.",
+    "Consistency over {number} days beats talent.",
+    "Master {action} before {number} sunrises.",
+    "A small step in {action} today prevents regret tomorrow."
+  ];
 
-const data = [];
+  const adverbs = ["carefully", "quickly", "secretly", "boldly", "silently"];
+  const adjectives = ["ancient", "mysterious", "shiny", "forgotten", "hidden"];
+  const times = ["before dawn", "by nightfall", "this week", "soon", "unexpectedly"];
 
-for (let i = 1; i <= COUNT; i++) {
-  const template = pick(pick(groups));
-  const fortune =
-    template
-      .replace("{action}", pick(actions))
-      .replace("{object}", pick(objects))
-      .replace("{number}", (i % 365) + 1) +
-    ` [${i}]`;
+  const groups = [good, bad, karma, threat, edu];
 
-  data.push({ id: i, fortune });
-}
- return data
+  function pick(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  for (let i = 1; i <= COUNT; i++) {
+    let template = pick(pick(groups));
+
+    let fortune = template
+      .replace("{action}", `${pick(adverbs)} ${pick(actions)}`)
+      .replace("{object}", `${pick(adjectives)} ${pick(objects)}`)
+      .replace("{number}", (i % 365) + 1);
+
+    if (Math.random() < 0.3) fortune += ` ${pick(times)}.`;
+
+    fortune += ` [${i}]`;
+
+    fortunes.push({ id: i, fortune });
+  }
+
 }
