@@ -28,12 +28,6 @@ xhr.send();
 // reveal fortune
 container.addEventListener("click", () => {
       show_fortune()
-      container.addEventListener("click", () => {
-      container.classList.remove("open");
-      fortuneDiv.textContent = "";
-      fortuneDiv.classList.remove("bad");
-      container.addEventListener("click", () => {show_fortune()});
-    });
 });
 
 function show_fortune(){
@@ -47,5 +41,16 @@ function show_fortune(){
   fortuneDiv.classList.toggle("bad", /know what you did|karma|careless|mistake/i.test(pick.fortune));
 
   container.classList.add("open");
+  container.addEventListener("click", () => {
+      reset_fortune()
+  });
+}
+function reset_fortune(){
 
+  container.classList.remove("open");
+   fortuneDiv.textContent = "";
+   fortuneDiv.classList.remove("bad");
+   container.addEventListener("click", () => {
+      show_fortune()
+  });
 }
