@@ -14,33 +14,6 @@
     color: #b5651d;
     text-shadow: 1px 1px 2px #fff3e0;
   }
-#cookie-container {
-  position: relative;
-  width: 220px;
-  height: 180px;
-  margin: 30px auto;
-}
-
-.cookie {
-  width: 220px;
-  height: 90px;
-  background: #d9a441;
-  border-radius: 0 0 120px 120px;
-  position: absolute;
-  left: 0;
-  transition: transform 0.8s ease;
-  z-index: 2;
-}
-
-.cookie.top {
-  top: 0;
-  border-radius: 120px 120px 0 0;
-}
-
-.cookie.bottom {
-  bottom: 0;
-}
-
 #fortune-wrapper {
   position: absolute;
   top: 50%;
@@ -49,8 +22,8 @@
   transform: translate(-50%, -50%);
   overflow: hidden;
   height: 0;
-  transition: height 0.8s ease;
   z-index: 1;
+  transition: height 0.8s ease;
 }
 
 #fortune {
@@ -60,15 +33,9 @@
   font-size: 0.95rem;
   font-weight: 600;
   color: #333;
-  transform: translateY(100%);
-  transition: transform 0.8s ease;
-}
-.cookie-container.open .top {
-  transform: translateY(-40px) rotate(-8deg);
-}
-
-.cookie-container.open .bottom {
-  transform: translateY(40px) rotate(8deg);
+  transform: translateY(100%) rotate(-3deg);
+  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* easeOutBack */
+  opacity: 0;
 }
 
 .cookie-container.open #fortune-wrapper {
@@ -76,7 +43,17 @@
 }
 
 .cookie-container.open #fortune {
-  transform: translateY(0);
+  transform: translateY(0) rotate(0deg);
+  opacity: 1;
+}
+
+/* Cookie split animation */
+.cookie-container.open .top {
+  transform: translateY(-40px) rotate(-8deg);
+}
+
+.cookie-container.open .bottom {
+  transform: translateY(40px) rotate(8deg);
 }
 
 /* Optional drama */
