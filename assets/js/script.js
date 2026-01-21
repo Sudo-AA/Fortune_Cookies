@@ -4,6 +4,7 @@ const fortuneDiv = document.getElementById('fortune');
 let fortunes = [];
 let loaded = false;
 
+// Load JSON
 const xhr = new XMLHttpRequest();
 xhr.open('GET', './assets/jsondata/fortune_cookies_100000.json', true);
 xhr.responseType = 'json';
@@ -24,7 +25,7 @@ xhr.onerror = function() {
 
 xhr.send();
 
-// when cookie is clicked
+// reveal fortune
 container.addEventListener("click", () => {
   if (!loaded || fortunes.length === 0) return;
   if (container.classList.contains('open')) return; // prevent double click
