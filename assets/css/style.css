@@ -66,3 +66,75 @@
   button {
     margin-top: 20px;
   }
+
+#cookie-container {
+  position: relative;
+  width: 220px;
+  height: 180px;
+  margin: 30px auto;
+}
+
+.cookie {
+  width: 220px;
+  height: 90px;
+  background: #d9a441;
+  border-radius: 0 0 120px 120px;
+  position: absolute;
+  left: 0;
+  transition: transform 0.8s ease;
+  z-index: 2;
+}
+
+.cookie.top {
+  top: 0;
+  border-radius: 120px 120px 0 0;
+}
+
+.cookie.bottom {
+  bottom: 0;
+}
+
+#fortune-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 180px;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  height: 0;
+  transition: height 0.8s ease;
+  z-index: 1;
+}
+
+#fortune {
+  background: #fff8dc;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+  transform: translateY(100%);
+  transition: transform 0.8s ease;
+}
+
+/* OPEN STATE */
+.cookie-container.open .top {
+  transform: translateY(-40px) rotate(-8deg);
+}
+
+.cookie-container.open .bottom {
+  transform: translateY(40px) rotate(8deg);
+}
+
+.cookie-container.open #fortune-wrapper {
+  height: 80px;
+}
+
+.cookie-container.open #fortune {
+  transform: translateY(0);
+}
+
+/* Optional drama */
+#fortune.bad {
+  color: #b00020;
+}
