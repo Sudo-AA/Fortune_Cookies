@@ -1,6 +1,4 @@
 const container = document.getElementById("cookie-container");
-const cookieTop = document.getElementById('cookie-top');
-const cookieBottom = document.getElementById('cookie-bottom');
 const resetBtn = document.getElementById('reset');
 let cracked = false;
 const fortuneDiv = document.getElementById('fortune');
@@ -26,44 +24,6 @@ xhr.onerror = function() {
 };
 
 xhr.send();
-function getRandomFortune() {
-  if (!fortunes.length) return "No fortune available.";
-  const randomIndex = Math.floor(Math.random() * fortunes.length);
-  const fortuneObj = fortunes[randomIndex];
-
-  if (fortuneObj.fortune.toLowerCase().includes("bad luck") || fortuneObj.fortune.toLowerCase().includes("loom")) {
-    fortuneDiv.classList.add('bad-luck');
-  } else {
-    fortuneDiv.classList.remove('bad-luck');
-  }
-
-  return fortuneObj.fortune;
-}
-function crackCookie() {
-  if (!fortunes.length) {
-    alert("Fortunes not loaded yet.");
-    return;
-  }
-  if (cracked) return;
-  cracked = true;
-  cookieTop.classList.add('cookie-cracked');
-  cookieBottom.classList.add('cookie-cracked');
-  setTimeout(() => {
-    fortuneDiv.style.opacity = 0;
-    fortuneDiv.textContent = getRandomFortune();
-    fortuneDiv.style.opacity = 1;
-  }, 600);
-}
-
-function resetCookie() {
-  cracked = false;
-  cookieTop.classList.remove('cookie-cracked');
-  cookieBottom.classList.remove('cookie-cracked');
-  fortuneDiv.style.opacity = 0;
-  fortuneDiv.classList.remove('bad-luck');
-  setTimeout(() => { fortuneDiv.textContent = ''; }, 300);
-}
-
 
 // when cookie is clicked
 container.addEventListener("click", () => {
@@ -83,7 +43,3 @@ resetBtn.addEventListener("click", () => {
   fortuneDiv.textContent = "";
   fortuneDiv.classList.remove("bad");
 });
-
-cookieTop.addEventListener('click', crackCookie);
-cookieBottom.addEventListener('click', crackCookie);
-resetBtn.addEventListener('click', resetCookie);
