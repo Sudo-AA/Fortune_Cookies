@@ -101,11 +101,9 @@ function generate_fortunes() {
     let fortune = template
       .replace("{action}", `${pick(adverbs)} ${pick(actions)}`)
       .replace("{object}", `${pick(adjectives)} ${pick(objects)}`)
-      .replace("{number}", (i % 365) + 1);
+      .replace("{number}", (Math.floor(Math.random() * 1000) % 365) + 1);
 
     if (Math.random() < 0.3) fortune += ` ${pick(times)}.`;
-
-    fortune += ` [${i}]`;
 
     return fortune
 
