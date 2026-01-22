@@ -34,77 +34,91 @@ function reset_fortune(){
 
 
 function generate_fortunes() {
-  let fortune_raw
-
   const good = [
-    "Luck tilts your way after you commit to {action}.",
-    "A quiet victory forms near {object}.",
-    "Opportunity circles back in {number} days.",
-    "Unexpected luck finds you while {action}. 🌟",
-    "Fortune smiles during {action} at {object}."
+    "Luck tilts your way when you {action}.",
+    "A quiet win forms near {object}.",
+    "Opportunity returns in {number} days.",
+    "Unexpected luck finds you while you {action}. 🌟",
+    "Fortune smiles near {object}."
   ];
 
   const bad = [
-    "Carelessness around {object} brings delay.",
-    "A small mistake echoes for {number} days.",
-    "Beware of rushing {action}; chaos follows. ⚡",
-    "An unseen error will arise near {object}."
+    "Carelessness near {object} causes delay.",
+    "A small mistake lingers for {number} days.",
+    "Rush this, and chaos follows. ⚡",
+    "An error appears near {object}."
   ];
 
   const karma = [
-    "Karma remembers how you treated {object}.",
-    "The universe keeps receipts from {number} nights ago.",
-    "What goes around comes around during {action}.",
-    "Your past deeds near {object} will return unexpectedly."
+    "Karma remembers your choice near {object}.",
+    "The universe kept the receipt.",
+    "What you did while {action} returns.",
+    "Old actions echo near {object}."
   ];
 
   const threat = [
-    "I know what you did near {object}. Choose wisely. 😈",
-    "Someone is watching how you handle {action}.",
-    "Your secret about {object} won't stay hidden.",
-    "Mistakes in {action} will be noticed by someone."
+    "I know what you did near {object}. 😈",
+    "Someone noticed how you {action}.",
+    "That secret will surface.",
+    "Eyes are on your next move."
   ];
 
   const edu = [
-    "Spend 15 minutes learning {action}; compound gains follow.",
-    "Consistency over {number} days beats talent.",
-    "Master {action} before {number} sunrises.",
-    "A small step in {action} today prevents regret tomorrow."
+    "Spend 15 minutes on {action}. It compounds.",
+    "Consistency beats talent.",
+    "Learn this before regret.",
+    "One step today saves months."
   ];
 
-  const adverbs = ["carefully", "quickly", "secretly", "boldly", "silently"];
-  const adjectives = ["ancient", "mysterious", "shiny", "forgotten", "hidden"];
-  const times = ["before dawn", "by nightfall", "this week", "soon", "unexpectedly"];
-  const actions = [
-    "reading", "coding", "studying", "deciding", "learning", "writing", "planning",
-    "meditating", "exploring", "negotiating", "reflecting", "experimenting",
-    "analyzing", "painting", "designing", "practicing", "questioning", "observing",
-    "dreaming", "calculating"
+  const love_sin = [
+    "Desire grows near {object}.",
+    "You want more than you admit.",
+    "Temptation returns tonight.",
+    "Love and guilt walk together."
+  ];
+
+  const adverbs = ["carefully", "boldly", "quietly", "patiently", "recklessly"];
+  const verbs = [
+    "read", "code", "study", "decide", "learn", "write", "plan",
+    "reflect", "analyze", "design", "practice", "observe", "experiment"
   ];
 
   const objects = [
-    "the mirror", "a message", "your screen", "the past", "a notebook", 
-    "the letter", "a shadow", "the window", "the stars", "an ancient scroll", 
-    "the candle", "the key", "the path", "a secret document", "the hidden door",
-    "a coin", "the garden", "the old book", "the forgotten diary", "the envelope"
+    "the mirror", "your screen", "the past", "a notebook",
+    "the window", "the key", "the path", "a hidden door",
+    "the old book", "the envelope", "the shadow"
   ];
 
-  const groups = [good, bad, karma, threat, edu];
+  const groups = [good, bad, karma, threat, edu, love_sin];
 
   function pick(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
   }
 
+  function buildAction() {
+    // Clean grammar: "boldly decide", "carefully analyze"
+    return `${pick(adverbs)} ${pick(verbs)}`;
+  }
 
-    let template = pick(pick(groups));
+  let template = pick(pick(groups));
 
-    let fortune = template
-      .replace("{action}", `${pick(adverbs)} ${pick(actions)}`)
-      .replace("{object}", `${pick(adjectives)} ${pick(objects)}`)
-      .replace("{number}", (Math.floor(Math.random() * 1000) % 365) + 1);
+  let fortune = template
+    .replace("{action}", buildAction())
+    .replace("{object}", pick(objects))
+    .replace("{number}", Math.floor(Math.random() * 30) + 1);
 
-    if (Math.random() < 0.3) fortune += ` ${pick(times)}.`;
+  // Optional sharp follow-up sentence
+  if (Math.random() < 0.35) {
+    const tags = [
+      "Choose wisely.",
+      "This matters.",
+      "Do not ignore it.",
+      "You were warned.",
+      "Pay attention."
+    ];
+    fortune += " " + pick(tags);
+  }
 
-    return fortune
-
+  return fortune;
 }
+
